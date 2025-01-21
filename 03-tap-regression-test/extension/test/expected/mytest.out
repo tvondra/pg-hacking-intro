@@ -1,4 +1,4 @@
-CREATE EXTENSION hacking;
+\set ECHO none
 SELECT hacking_function();
  hacking_function 
 ------------------
