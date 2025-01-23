@@ -28,22 +28,26 @@ Add asserts to the C code, i.e. a way to ensure conditions that should
 hold for correct executions.
 
 
-## 06 - varlena data types
+## 06 - simple data types
 
-## 07 - toasted values
 
-## 08 - memory contexts
 
-## 09 - adding GUC parameters
+## 07 - varlena data types
 
-## 10 - accessing relations
+## 08 - toasted values
 
-## 11 - accessing tuples
+## 09 - memory contexts
 
-## 12 - using hooks
+## 10 - adding GUC parameters
 
-## 13 - using spi
+## 11 - accessing relations
 
-## 14 - catalog definitions
+## 12 - accessing tuples
 
-## 15 - executor basics
+## 13 - using hooks
+
+## 14 - using spi
+
+## 15 - catalog definitions
+
+## 16 - executor basics
