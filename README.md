@@ -30,6 +30,7 @@ hold for correct executions.
 
 ## 06 - simple data types
 
+Working with simple data types, passed by value.
 
 
 ## 07 - varlena data types
