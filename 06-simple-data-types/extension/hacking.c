@@ -9,6 +9,7 @@ PG_MODULE_MAGIC;
 
 /* example function */
 PG_FUNCTION_INFO_V1(hacking_function);
+PG_FUNCTION_INFO_V1(hacking_function_2);
 
 void
 _PG_init(void)
