@@ -1,0 +1,4 @@
+# hacking intro extension
+comment = 'skeleton of a minimal extensio'
+default_version = '1.0.0'
+relocatable = true
