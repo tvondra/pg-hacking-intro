@@ -23,10 +23,10 @@ Steps:
    SELECT length(a) FROM t;
    ```
 
-2. Try calling the `hash_function` on the value:
+2. Try calling the `hacking_function(text)` on the value:
 
    ```
-   SELECT hash_function(a) FROM t
+   SELECT hacking_function(a) FROM t
    ```
 
    This should fail, printing some garbage. How come?
