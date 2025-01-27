@@ -78,3 +78,6 @@ Steps:
    ```
 
    And you should get a warning message along with the returned value.
+
+8. However, it likely prints some garbage data after the string. Why?
+   Try fixing that.
