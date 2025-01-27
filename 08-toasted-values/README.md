@@ -38,6 +38,8 @@ Steps:
 
    ```
    SELECT toastrelid::regclass FROM pg_class WHERE relname = 't';
+   
+   SELECT * FROM pg_toast.pg_toast_24801;
    ```
 
 4. If a value gets TOASTed (longer than some threshold ...), it's replaced
@@ -90,3 +92,7 @@ Steps:
 
 11. There's also `PG_DETOAST_DATUM_SLICE` / `DatumGetTextPSlice`. Why
     would it be interesting?
+
+12. It's possible to define functions with `internal` data type, and
+    use it to pass "raw" pointers (and use `PG_GETARG_POINTER`). In
+    what situations might that be useful?
