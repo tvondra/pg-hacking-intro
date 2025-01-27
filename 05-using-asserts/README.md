@@ -6,7 +6,7 @@ development. This should prevent "can't happen" cases and verify "must
 happen" cases.
 
 This is an "extension" of the asserts provided by standad library,
-integrated into the Postgres configue / build system. In production
+integrated into the Postgres configure / build system. In production
 builds asserts are disabled.
 
 Steps:
@@ -29,10 +29,9 @@ Steps:
    ./make -s -j4 install
    ```
 
-   And try running the tests again. It should fail.
-
-   Note: The `CPPFLAGS` is optional - it disables optimizations, which
-   makes it easiert to analyze core dumps.
+   And try running the tests again. It should fail. (The `CPPFLAGS` is
+   optional - it disables optimizations, which makes it easiert to
+   analyze core dumps.)
 
 3. It's often useful to investigate why/where an ABORT happened, which
    you can approach in various ways. First, inspect the server log,
@@ -48,7 +47,6 @@ Steps:
     pg_backend_pid 
    ----------------
             802583
-   (1 row)
    ```
 
    ```
@@ -56,14 +54,12 @@ Steps:
    ```
 
    Make the backend execute using the `c` command, and invoke the SQL
-   function that triggers the assert.
+   function that triggers the assert. The `gdb` session should
+   interrupt, allowing you to investigate.
 
    ```
    SELECT hacking_function()
    ```
-
-   The `gdb` session should interrupt, allowing you to investigate.
-
 
 6. Alternatively, you may enable `core` files, so that the failing
    backend dumps memory into a file. To do that, you may need to (a)
@@ -82,7 +78,7 @@ Steps:
    
    `sysctl -w kernel.core_pattern=/mnt/data/cores/core.%p`
 
-   With this in place (and instance restarted), run `make installcheck`
+   With this in place (and instance restarted), run `installcheck`
    again. You should get a core file.
 
 6. Now inspect the core file using `gdb` by speficying the paths to the

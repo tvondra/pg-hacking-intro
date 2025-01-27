@@ -16,10 +16,7 @@ instance and checks the log. And then shuts the instance.
 
 Steps:
 
-1. Go to the "extension" directory, create an empty file
-
-   `t/001_basic.sql`
-
+1. Go to the "extension" directory, create an empty file `t/001_basic.sql`
    and run `make installcheck`. It should try to run the test and fail,
    complaining about the file not defining any tests.
 
