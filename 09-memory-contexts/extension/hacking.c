@@ -34,6 +34,7 @@ hacking_function(PG_FUNCTION_ARGS)
 	old_ctx = MemoryContextSwitchTo(ctx);
 
 	tmp = (char *) palloc(8192*10);
+	pfree(tmp);
 
 	MemoryContextStats(ctx);
 	MemoryContextSwitchTo(old_ctx);
@@ -55,11 +56,48 @@ hacking_function_2(PG_FUNCTION_ARGS)
 Datum
 hacking_function_3(PG_FUNCTION_ARGS)
 {
-	text	*msg = (text *) PG_DETOAST_DATUM(PG_GETARG_DATUM(0));
-	char	*msg_str = VARDATA_ANY(msg);
-	int		msg_size = VARSIZE_ANY_EXHDR(msg);
+	text	*msg;
+	char	*msg_str;
+	int		msg_size;
+	char   *ret;
+
+	MemoryContext oldctx;
+
+	/* create a local context for our temporary stuff */
+	MemoryContext ctx = AllocSetContextCreate(CurrentMemoryContext,
+											  "my test context",
+											  ALLOCSET_DEFAULT_SIZES);
+
+	/* switch to the new local context */
+	oldctx = MemoryContextSwitchTo(ctx);
+
+	msg = (text *) PG_DETOAST_DATUM(PG_GETARG_DATUM(0));
+	msg_str = VARDATA_ANY(msg);
+	msg_size = VARSIZE_ANY_EXHDR(msg);
+
+	for (int i = 0; i < 100; i++)
+	{
+		char   *ptr = palloc(1328);
+		pfree(ptr);
+	}
+
+	/* switch "back" to the original context */
+	MemoryContextSwitchTo(oldctx);
+
+	/* print top-level context stats, then stats for our context */
+	MemoryContextStats(TopMemoryContext);
+	MemoryContextStats(ctx);
 
 	elog(WARNING, "message = %s, size = %d", msg_str, msg_size);
 
-	PG_RETURN_CSTRING(text_to_cstring(msg));
+	/* have to do the conversion before destroying the source */
+	ret = text_to_cstring(msg);
+
+	/* delete the next context */
+	MemoryContextDelete(ctx);
+
+	/* print the top-level stats again */
+	MemoryContextStats(TopMemoryContext);
+
+	PG_RETURN_CSTRING(ret);
 }
