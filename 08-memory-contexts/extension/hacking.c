@@ -56,10 +56,10 @@ hacking_function_2(PG_FUNCTION_ARGS)
 Datum
 hacking_function_3(PG_FUNCTION_ARGS)
 {
-	text	*msg;
-	char	*msg_str;
-	int		msg_size;
-	char   *ret;
+	struct varlena	*msg;
+	char			*msg_str;
+	int				msg_size;
+	char   			*ret;
 
 	MemoryContext oldctx;
 
@@ -71,7 +71,7 @@ hacking_function_3(PG_FUNCTION_ARGS)
 	/* switch to the new local context */
 	oldctx = MemoryContextSwitchTo(ctx);
 
-	msg = (text *) PG_DETOAST_DATUM(PG_GETARG_DATUM(0));
+	msg = PG_GETARG_RAW_VARLENA_P(0);
 	msg_str = VARDATA_ANY(msg);
 	msg_size = VARSIZE_ANY_EXHDR(msg);
 
