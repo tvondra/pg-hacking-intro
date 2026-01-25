@@ -26,11 +26,11 @@ Steps:
 
 3. Let's add a new config option - a true/false flag to drive something.
    The easiest way is to find a similar entry, copy and modify it.
-   Copy `enable_seqscan` option, rename it to `enable_my_feature` or
-   whatever else.
+   Copy `enable_seqscan` option in `guc_parameters.dat`, rename it to
+   `enable_my_feature` or whatever else.
 
 4. You'll need to point the GUC to a new variable. `enable_seqscan` uses
-   variable defined in `cost.h` and `cost.c`, so just copy those too.
+   variable defined in `cost.h` and `costsize.c`, so just copy those too.
    Now every place that includes `cost.h` can use the C variable backing
    the GUC option.
 
