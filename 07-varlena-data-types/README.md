@@ -45,7 +45,7 @@ Steps:
    types. Choose the one that would work with your argument type.
 
    Notice that there are already `PG_GETARG_TEXT_*` macros which can be
-   used with `text` type. This will be covered in the next exercise.
+   used with `text` type.
 
 4. Modify the C function to add the following code:
    ```
