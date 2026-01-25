@@ -93,8 +93,6 @@ Steps:
 8. `DatumGetInt32` is what does the actual casting. You can see what it
     does in `postgres.h` - it mostly just casts to/from a `Datum` value.
 
-9. Look at `DatumGetInt64`. Why does it need to be more complicated?
-
-10. SQL functions can handle arguments in smarter ways, using `PG_NARGS`
+9. SQL functions can handle arguments in smarter ways, using `PG_NARGS`
     and `PG_ARGISNULL` to handle calls with NULLs and different numbers
     of arguments etc.
